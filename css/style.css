@@ -107,6 +107,7 @@ body{
   padding: 12px 8px;
   text-align:center;
   box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+  text-decoration: none;
 }
 .topnav-item .en{
   font-weight: 700;
@@ -172,13 +173,18 @@ body{
 .panel-tri[data-tri="none"]::before,
 .panel-tri[data-tri="none"]::after{ display:none; }
 
-/* headings like screenshot */
+/* headings like screenshot (切れ対策込み) */
 .h2{
   font-family:"Amatic SC", cursive;
   font-weight:700;
   font-size: 46px;
   letter-spacing:.12em;
   margin: 8px 0 18px;
+
+  /* 重要：下が切れない */
+  line-height: 1.25;
+  padding-bottom: 8px;
+  overflow: visible;
 }
 .jp{
   line-height: 2.0;
@@ -199,10 +205,11 @@ body{
 }
 .sign span{ font-weight:700; letter-spacing:.08em; }
 
+/* icons (余白増やして切れ/詰まり回避) */
 .icon{
   width: 48px;
   height: 48px;
-  margin: 0 auto 6px;
+  margin: 0 auto 10px;
   color: rgba(0,0,0,0.72);
 }
 .icon svg{ width:100%; height:100%; }
@@ -214,6 +221,11 @@ body{
   font-weight:700;
   letter-spacing:.18em;
   font-size: 60px;
+
+  /* 切れ対策 */
+  line-height: 1.1;
+  padding-bottom: 6px;
+
   margin: 6px 0 10px;
 }
 .and-doodle{
@@ -268,15 +280,18 @@ body{
   letter-spacing:.16em;
   color: rgba(255,255,255,0.95);
   margin: 0;
+
+  /* 切れ対策 */
+  line-height: 1.15;
+  padding-bottom: 6px;
 }
 .count-to{
   margin-top: 6px;
   font-family:"Noto Sans JP", sans-serif;
   font-weight:700;
-  color: #ff4a86; /* スクショのピンク系 */
+  color: #ff4a86;
   letter-spacing:.10em;
 }
-.count-to span{ font-weight:700; }
 .count-grid{
   margin: 18px auto 0;
   width: min(980px, 100%);
@@ -322,26 +337,55 @@ body{
   gap: 36px;
   align-items:start;
 }
+
+/* 重要：ひし形の中の文字が切れないように拡大＆余白調整 */
 .diamond{
-  width: 250px;
-  height: 250px;
+  width: 280px;
+  height: 280px;
   margin: 0 auto;
   background: var(--blue);
   transform: rotate(45deg);
   display:grid;
   place-items:center;
   color:#fff;
+
+  overflow: visible;
 }
-.diamond > *{ transform: rotate(-45deg); text-align:center; }
+.diamond > *{
+  transform: rotate(-45deg);
+  text-align:center;
+
+  max-width: 200px;
+}
+
 .d-top{
   font-weight:700;
   letter-spacing:.06em;
-  line-height: 1.5;
+  line-height: 1.65;
 }
 .d-top small{ display:block; font-size: 11px; opacity:.95; }
-.d-mid{ margin-top: 10px; font-size: 13px; font-weight:700; }
-.d-time{ margin-top: 10px; font-size: 26px; font-weight:700; letter-spacing:.06em; }
-.d-sub{ margin-top: 10px; font-size: 11px; opacity:.95; }
+
+.d-mid{
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight:700;
+  line-height: 1.4;
+}
+
+.d-time{
+  margin-top: 8px;
+  font-size: 26px;
+  font-weight:700;
+  letter-spacing:.06em;
+  line-height: 1.1;
+}
+
+.d-sub{
+  margin-top: 8px;
+  font-size: 11px;
+  opacity:.95;
+  line-height: 1.4;
+}
 
 .greenbox{
   max-width: 980px;
@@ -390,7 +434,7 @@ body{
 }
 .ft{ line-height: 1.9; }
 .ftn{ margin-top: 10px; font-weight:700; letter-spacing:.10em; }
-.top{ display:inline-block; margin-top: 14px; font-weight:700; opacity:.75; }
+.top{ display:inline-block; margin-top: 14px; font-weight:700; opacity:.75; text-decoration:none; color:inherit; }
 
 /* Countdown tick */
 .pulse{ animation: pulse 160ms ease; }
@@ -404,8 +448,13 @@ body{
 @media (max-width: 760px){
   .hero-title{ bottom: 118px; }
   .topnav{ width: calc(100% - 22px); gap: 8px; }
+
   .two{ grid-template-columns: 1fr; gap: 26px; }
+
   .count-grid{ grid-template-columns: 1fr 1fr; }
+
   .diamond-wrap{ grid-template-columns: 1fr; gap: 22px; }
-  .diamond{ width: 220px; height: 220px; }
+
+  .diamond{ width: 240px; height: 240px; }
+  .diamond > *{ max-width: 170px; }
 }
