@@ -6,14 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="2026年3月27日（金）SASA（服部緑地）にて挙式・披露宴を執り行います。" />
 
-  <!-- Fonts (日本語＋手書き英字) -->
+  <!-- Fonts：ポップ英字＋読みやすい日本語 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Fredoka:wght@400;600&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+  <!-- Background confetti (CSS only) -->
+  <div class="confetti" aria-hidden="true"></div>
 
   <!-- progress -->
   <div class="progress" aria-hidden="true"><div class="bar" id="progressBar"></div></div>
@@ -25,6 +28,7 @@
 
     <div class="hero-inner">
       <div class="hero-badge">2026.03.27 FRI</div>
+
       <div class="hero-title">
         <div class="hero-scribble" aria-hidden="true"></div>
         <div class="hero-text">WEDDING INVITATION</div>
@@ -32,13 +36,15 @@
 
       <div class="hero-names">
         <span>橘 風雅</span>
-        <span class="dot">・</span>
+        <span class="dot">×</span>
         <span>平嶋 遥歌</span>
       </div>
 
       <div class="hero-cta">
         <a class="btn" href="#tabs">MESSAGE / EVENTS / MAP</a>
       </div>
+
+      <div class="hero-hint">Scroll ↓</div>
     </div>
 
     <!-- decorative corners -->
@@ -65,17 +71,14 @@
       <div class="text">
         皆様におかれましては ますますご清祥のこととお慶び申し上げます。<br><br>
         このたび私たちは 結婚式を挙げる運びとなりました。<br><br>
-        日頃お世話になっております皆様とともに<br>
-        ガーデンに囲まれた空間で ささやかなひとときを<br>
-        ご一緒できましたら幸いです。
+        日頃お世話になっております皆様とともに、ガーデンに囲まれた空間で
+        ささやかなひとときをご一緒できましたら幸いです。
       </div>
 
-      <div class="names">
-        橘 風雅　／　平嶋 遥歌
-      </div>
+      <div class="names">橘 風雅　／　平嶋 遥歌</div>
     </section>
 
-    <!-- Inline photo 1 -->
+    <!-- Photo -->
     <section class="photo reveal" data-reveal>
       <img src="images/nyuseki.jpg" alt="写真">
     </section>
@@ -114,24 +117,42 @@
         </div>
       </div>
 
-      <div class="countdown" id="countdown"></div>
+      <!-- Stylish countdown -->
+      <div class="countwrap" aria-label="カウントダウン">
+        <div class="count-title">Countdown to Ceremony</div>
+        <div class="count-grid" id="countGrid">
+          <div class="count-box">
+            <div class="num" id="cdDays">--</div>
+            <div class="lab">DAYS</div>
+          </div>
+          <div class="count-box">
+            <div class="num" id="cdHours">--</div>
+            <div class="lab">HOURS</div>
+          </div>
+          <div class="count-box">
+            <div class="num" id="cdMins">--</div>
+            <div class="lab">MIN</div>
+          </div>
+          <div class="count-box">
+            <div class="num" id="cdSecs">--</div>
+            <div class="lab">SEC</div>
+          </div>
+        </div>
+        <div class="count-sub" id="countSub">挙式開始：2026-03-27 13:00</div>
+      </div>
     </section>
 
-    <!-- Inline photo 2 -->
     <section class="photo reveal" data-reveal>
       <img src="images/kaoawase.jpg" alt="写真">
     </section>
 
-    <!-- “Pop” highlight block -->
     <section class="banner reveal" data-reveal>
       <div class="banner-inner">
-        <div class="spark" aria-hidden="true"></div>
         <div class="banner-title">Garden Wedding</div>
         <div class="banner-text">自然に囲まれた場所で、笑顔の一日を。</div>
       </div>
     </section>
 
-    <!-- Inline photo 3 (wide) -->
     <section class="photo wide reveal" data-reveal>
       <img src="images/konokin.jpg" alt="写真">
     </section>
@@ -158,7 +179,6 @@
       </div>
     </section>
 
-    <!-- Inline photo 4 -->
     <section class="photo reveal" data-reveal>
       <img src="images/hawaii.jpg" alt="写真">
     </section>
