@@ -2,179 +2,165 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>ご結婚式のご案内｜橘 風雅 & 平嶋 遥歌</title>
+  <title>Wedding Invitation｜橘 風雅 & 平嶋 遥歌</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="2026年3月27日（金）SASA（服部緑地）にて挙式・披露宴を執り行います。" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Fonts (日本語＋手書き英字) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- Scroll progress -->
+  <!-- progress -->
   <div class="progress" aria-hidden="true"><div class="bar" id="progressBar"></div></div>
 
-  <!-- Floating TOC button -->
-  <button class="toc-fab" id="tocBtn" aria-label="目次を開く">目次</button>
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="hero-bg" style="background-image:url('images/hero.jpg')"></div>
+    <div class="hero-overlay"></div>
 
-  <!-- TOC Drawer -->
-  <div class="toc-drawer" id="tocDrawer" aria-hidden="true">
-    <div class="toc-card">
-      <div class="toc-head">
-        <div class="toc-title">目次</div>
-        <button class="toc-close" id="tocClose" aria-label="閉じる">×</button>
+    <div class="hero-inner">
+      <div class="hero-badge">2026.03.27 FRI</div>
+      <div class="hero-title">
+        <div class="hero-scribble" aria-hidden="true"></div>
+        <div class="hero-text">WEDDING INVITATION</div>
       </div>
 
-      <nav class="toc-links" aria-label="ページ内目次">
-        <a href="#greeting" class="toc-link">ごあいさつ</a>
-        <a href="#schedule" class="toc-link">日時</a>
-        <a href="#venue" class="toc-link">会場</a>
-        <a href="#story" class="toc-link">私たちのこと</a>
-        <a href="#map" class="toc-link">地図</a>
-      </nav>
+      <div class="hero-names">
+        <span>橘 風雅</span>
+        <span class="dot">・</span>
+        <span>平嶋 遥歌</span>
+      </div>
 
-      <div class="toc-foot">
-        <div class="countdown" id="countdown"></div>
+      <div class="hero-cta">
+        <a class="btn" href="#tabs">MESSAGE / EVENTS / MAP</a>
       </div>
     </div>
-    <div class="toc-backdrop" id="tocBackdrop"></div>
-  </div>
+
+    <!-- decorative corners -->
+    <div class="corner corner-l"></div>
+    <div class="corner corner-r"></div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="tabs" id="tabs" aria-label="ページ内ナビ">
+    <a class="tab active" href="#message">MESSAGE</a>
+    <a class="tab" href="#events">EVENTS</a>
+    <a class="tab" href="#map">MAP</a>
+  </nav>
 
   <main class="container">
 
-    <!-- Header -->
-    <header class="header reveal" data-reveal>
-      <div class="knot" aria-hidden="true">
-        <!-- 梅結び風（SVG） -->
-        <svg width="64" height="64" viewBox="0 0 100 100" role="img" aria-label="梅結び">
-          <g fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M50 20 C35 20, 28 32, 30 42 C32 55, 46 57, 50 48 C54 57, 68 55, 70 42 C72 32, 65 20, 50 20Z"/>
-            <path d="M20 50 C20 35, 32 28, 42 30 C55 32, 57 46, 48 50 C57 54, 55 68, 42 70 C32 72, 20 65, 20 50Z"/>
-            <path d="M50 80 C65 80, 72 68, 70 58 C68 45, 54 43, 50 52 C46 43, 32 45, 30 58 C28 68, 35 80, 50 80Z"/>
-            <path d="M80 50 C80 65, 68 72, 58 70 C45 68, 43 54, 52 50 C43 46, 45 32, 58 30 C68 28, 80 35, 80 50Z"/>
-          </g>
-        </svg>
+    <!-- MESSAGE -->
+    <section id="message" class="card reveal" data-reveal>
+      <div class="card-head">
+        <div class="chip chip-pink">MESSAGE</div>
+        <h2>ごあいさつ</h2>
       </div>
 
-      <div class="title">
-        <div class="title-sub">Wedding Invitation</div>
-        <h1 class="title-main">ごあいさつ</h1>
-        <div class="title-date">2026.03.27 Fri</div>
+      <div class="text">
+        皆様におかれましては ますますご清祥のこととお慶び申し上げます。<br><br>
+        このたび私たちは 結婚式を挙げる運びとなりました。<br><br>
+        日頃お世話になっております皆様とともに<br>
+        ガーデンに囲まれた空間で ささやかなひとときを<br>
+        ご一緒できましたら幸いです。
       </div>
-    </header>
 
-    <!-- Greeting -->
-    <section id="greeting" class="panel reveal" data-reveal>
-      <div class="vbox">
-        <div class="vlabel">謹敬</div>
-        <div class="vtext">
-          皆様におかれましては<br>
-          ますますご清祥のことと<br>
-          お慶び申し上げます<br><br>
-
-          このたび私たちは<br>
-          結婚式を挙げる運びとなりました<br><br>
-
-          日頃お世話になっております<br>
-          皆様とともに<br>
-          ささやかながら<br>
-          心あたたまる一日を<br>
-          過ごせましたら幸いです
-        </div>
-
-        <div class="vnames">
-          橘 風雅<br>
-          平嶋 遥歌
-        </div>
+      <div class="names">
+        橘 風雅　／　平嶋 遥歌
       </div>
     </section>
 
-    <!-- Photo 1 -->
-    <section class="photo-block reveal" data-reveal>
-      <div class="photo">
-        <img src="images/nyuseki.jpg" alt="写真1">
-      </div>
+    <!-- Inline photo 1 -->
+    <section class="photo reveal" data-reveal>
+      <img src="images/nyuseki.jpg" alt="写真">
     </section>
 
-    <!-- Schedule -->
-    <section id="schedule" class="panel reveal" data-reveal>
-      <div class="vbox">
-        <div class="vlabel">日時</div>
-        <div class="vtext">
-          二〇二六年三月二十七日（金）<br><br>
-          受付　十二時<br>
-          挙式　十三時<br>
-          披露宴　十四時
+    <!-- EVENTS -->
+    <section id="events" class="card reveal" data-reveal>
+      <div class="card-head">
+        <div class="chip chip-blue">EVENTS</div>
+        <h2>日時・会場</h2>
+      </div>
+
+      <div class="grid">
+        <div class="item">
+          <div class="k">日程</div>
+          <div class="v">2026年3月27日（金）</div>
+        </div>
+        <div class="item">
+          <div class="k">受付</div>
+          <div class="v">12:00</div>
+        </div>
+        <div class="item">
+          <div class="k">挙式</div>
+          <div class="v">13:00</div>
+        </div>
+        <div class="item">
+          <div class="k">披露宴</div>
+          <div class="v">14:00</div>
+        </div>
+        <div class="item item-wide">
+          <div class="k">会場</div>
+          <div class="v">SASA（ササ）</div>
+        </div>
+        <div class="item item-wide">
+          <div class="k">住所</div>
+          <div class="v">〒561-0873 大阪府豊中市服部緑地1-8</div>
         </div>
       </div>
+
+      <div class="countdown" id="countdown"></div>
     </section>
 
-    <!-- Photo 2 -->
-    <section class="photo-block reveal" data-reveal>
-      <div class="photo">
-        <img src="images/kaoawase.jpg" alt="写真2">
+    <!-- Inline photo 2 -->
+    <section class="photo reveal" data-reveal>
+      <img src="images/kaoawase.jpg" alt="写真">
+    </section>
+
+    <!-- “Pop” highlight block -->
+    <section class="banner reveal" data-reveal>
+      <div class="banner-inner">
+        <div class="spark" aria-hidden="true"></div>
+        <div class="banner-title">Garden Wedding</div>
+        <div class="banner-text">自然に囲まれた場所で、笑顔の一日を。</div>
       </div>
     </section>
 
-    <!-- Venue -->
-    <section id="venue" class="panel reveal" data-reveal>
-      <div class="vbox">
-        <div class="vlabel">会場</div>
-        <div class="vtext">
-          SASA（ササ）<br>
-          〒561-0873<br>
-          大阪府豊中市服部緑地一―八
-        </div>
-
-        <div class="note">
-          ※開始時刻に余裕をもってお越しください
-        </div>
-      </div>
+    <!-- Inline photo 3 (wide) -->
+    <section class="photo wide reveal" data-reveal>
+      <img src="images/konokin.jpg" alt="写真">
     </section>
 
-    <!-- Photo 3 (wide) -->
-    <section class="photo-block reveal" data-reveal>
-      <div class="photo wide">
-        <img src="images/konokin.jpg" alt="写真3">
+    <!-- MAP -->
+    <section id="map" class="card reveal" data-reveal>
+      <div class="card-head">
+        <div class="chip chip-yellow">MAP</div>
+        <h2>アクセス</h2>
       </div>
-    </section>
 
-    <!-- Story -->
-    <section id="story" class="panel reveal" data-reveal>
-      <div class="vbox">
-        <div class="vlabel">私たちのこと</div>
-        <div class="vtext">
-          これまで支えてくださった皆様へ<br>
-          感謝の気持ちを込めて<br>
-          ガーデンに囲まれた空間で<br>
-          ささやかなひとときを<br>
-          ご一緒できましたら幸いです
-        </div>
-      </div>
-    </section>
-
-    <!-- Photo 4 -->
-    <section class="photo-block reveal" data-reveal>
-      <div class="photo">
-        <img src="images/hawaii.jpg" alt="写真4">
-      </div>
-    </section>
-
-    <!-- Map -->
-    <section id="map" class="map-block reveal" data-reveal>
       <div class="map-head">
-        <div class="map-title">地図</div>
         <a class="map-link" target="_blank" rel="noopener"
-           href="https://www.google.com/maps?q=%E5%A4%A7%E9%98%AA%E5%BA%9C%E8%B1%8A%E4%B8%AD%E5%B8%82%E6%9C%8D%E9%83%A8%E7%B7%91%E5%9C%B0+1-8">
+          href="https://www.google.com/maps?q=%E5%A4%A7%E9%98%AA%E5%BA%9C%E8%B1%8A%E4%B8%AD%E5%B8%82%E6%9C%8D%E9%83%A8%E7%B7%91%E5%9C%B0+1-8">
           Googleマップで開く
         </a>
       </div>
 
-      <iframe
-        title="SASA（服部緑地）地図"
-        src="https://www.google.com/maps?q=大阪府豊中市服部緑地1-8&output=embed"
-        loading="lazy">
-      </iframe>
+      <div class="map-wrap">
+        <iframe
+          title="SASA（服部緑地）地図"
+          src="https://www.google.com/maps?q=大阪府豊中市服部緑地1-8&output=embed"
+          loading="lazy"></iframe>
+      </div>
+    </section>
+
+    <!-- Inline photo 4 -->
+    <section class="photo reveal" data-reveal>
+      <img src="images/hawaii.jpg" alt="写真">
     </section>
 
     <footer class="footer reveal" data-reveal>
@@ -182,7 +168,8 @@
         当日は皆さまとお会いできますことを<br>
         心より楽しみにしております
       </div>
-      <div class="footer-names">橘 風雅 ／ 平嶋 遥歌</div>
+      <div class="footer-names">橘 風雅 ＆ 平嶋 遥歌</div>
+      <a class="to-top" href="#top">▲ TOP</a>
     </footer>
 
   </main>
