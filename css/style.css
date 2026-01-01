@@ -1,11 +1,12 @@
 :root{
-  --bg: #ffffff;
+  --bg: #f6f4f1;
+  --bg2: #ffffff;
   --text: #1f1f1f;
   --muted: #6b6b6b;
   --line: rgba(0,0,0,0.08);
-  --card: rgba(255,255,255,0.92);
-  --accent: #d64242; /* 梅結びの赤 */
-  --shadow: 0 14px 30px rgba(0,0,0,0.08);
+  --card: rgba(255,255,255,0.88);
+  --accent: #d64242;
+  --shadow: 0 16px 34px rgba(0,0,0,0.08);
   --radius: 18px;
 }
 
@@ -14,9 +15,15 @@
 html, body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
   color: var(--text);
   font-family: "Noto Serif JP", serif;
+
+  /* おしゃれ背景（和紙っぽいグラデ＋控えめ模様） */
+  background:
+    radial-gradient(1200px 800px at 50% -10%, rgba(214,66,66,0.06), transparent 55%),
+    radial-gradient(900px 700px at 110% 20%, rgba(0,0,0,0.05), transparent 55%),
+    radial-gradient(900px 700px at -10% 70%, rgba(0,0,0,0.04), transparent 55%),
+    linear-gradient(180deg, var(--bg2), var(--bg));
 }
 
 a { color: inherit; }
@@ -24,7 +31,7 @@ a { color: inherit; }
 .container{
   max-width: 520px;
   margin: 0 auto;
-  padding: 28px 18px 64px;
+  padding: 22px 16px 64px;
 }
 
 /* progress bar */
@@ -40,12 +47,12 @@ a { color: inherit; }
   height: 100%;
   width: 0%;
   background: var(--accent);
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 /* Header */
 .header{
-  padding: 28px 10px 22px;
+  padding: 26px 10px 22px;
   text-align: center;
   border-bottom: 1px solid var(--line);
 }
@@ -54,7 +61,7 @@ a { color: inherit; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 10px;
   margin-bottom: 18px;
 }
 
@@ -77,36 +84,41 @@ a { color: inherit; }
   color: var(--muted);
 }
 
-/* Vertical panels */
+/* Panels */
 .panel{
-  margin: 28px 0;
-  padding: 24px 18px;
+  margin: 26px 0;
+  padding: 22px 16px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   background: var(--card);
+  backdrop-filter: blur(6px);
 }
 
+/* 縦書き：ズレ対策の要点
+   - inline-size/heightの暴れを抑える
+   - 幅をfit-contentにしつつmaxで抑える
+   - 余白と境界線の扱いを安定化
+*/
 .vbox{
   writing-mode: vertical-rl;
   text-orientation: mixed;
   letter-spacing: 0.14em;
   line-height: 2.15;
-  margin: 0 auto;
   width: fit-content;
   max-width: 100%;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
 }
 
 .vlabel{
   font-weight: 600;
-  color: var(--text);
   margin-left: 14px;
   padding-left: 14px;
   border-left: 1px solid var(--line);
 }
 
 .vtext{
-  color: var(--text);
   font-size: 15px;
 }
 
@@ -118,23 +130,22 @@ a { color: inherit; }
 
 .note{
   writing-mode: horizontal-tb;
-  margin-top: 16px;
+  margin-top: 14px;
   font-size: 12px;
   color: var(--muted);
 }
 
-/* Inline photos */
+/* Photos (no captions) */
 .photo-block{
-  margin: 26px 0;
+  margin: 24px 0;
 }
 
 .photo{
-  margin: 0;
   border-radius: var(--radius);
   overflow: hidden;
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
-  background: #fff;
+  background: rgba(255,255,255,0.92);
 }
 
 .photo img{
@@ -143,14 +154,7 @@ a { color: inherit; }
   height: auto;
 }
 
-.photo figcaption{
-  padding: 12px 14px;
-  font-size: 12px;
-  color: var(--muted);
-  letter-spacing: 0.12em;
-  text-align: center;
-}
-
+/* wide photo crop (optional for landscape) */
 .photo.wide img{
   aspect-ratio: 16 / 9;
   object-fit: cover;
@@ -158,11 +162,12 @@ a { color: inherit; }
 
 /* Map */
 .map-block{
-  margin-top: 32px;
+  margin-top: 30px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
+  background: rgba(255,255,255,0.92);
 }
 
 .map-head{
@@ -170,7 +175,6 @@ a { color: inherit; }
   align-items: center;
   justify-content: space-between;
   padding: 14px 14px;
-  background: #fff;
   border-bottom: 1px solid var(--line);
 }
 
@@ -195,9 +199,9 @@ a { color: inherit; }
 
 /* Footer */
 .footer{
-  margin-top: 36px;
+  margin-top: 34px;
   text-align: center;
-  padding: 22px 10px 8px;
+  padding: 20px 10px 6px;
   color: var(--muted);
 }
 
@@ -326,10 +330,34 @@ a { color: inherit; }
   letter-spacing: 0.10em;
 }
 
-/* Mobile tweaks */
+/* ===== スマホの“文字ズレ”対策（決定版） =====
+   縦書きは端末によって字間・行間がズレやすいので、
+   480px以下では「横書き」に切り替えて崩れをゼロにします。
+   見た目は和モダンのまま、読みやすさと整列を優先。
+*/
 @media (max-width: 480px){
-  .container{ padding: 22px 14px 64px; }
+  .container{ padding: 18px 12px 64px; }
   .title-main{ font-size: 20px; }
-  .panel{ padding: 22px 16px; }
+
+  .vbox{
+    writing-mode: horizontal-tb;
+    letter-spacing: 0.04em;
+    line-height: 2.0;
+    width: 100%;
+    margin: 0;
+  }
+
+  .vlabel{
+    border-left: none;
+    border-bottom: 1px solid var(--line);
+    margin: 0 0 10px;
+    padding: 0 0 10px;
+    display: inline-block;
+    letter-spacing: 0.10em;
+  }
+
   .vtext{ font-size: 14px; }
+  .vnames{ margin-top: 16px; }
+
+  .map-block iframe{ height: 320px; }
 }
