@@ -10,7 +10,7 @@ function updateProgress() {
 window.addEventListener("scroll", updateProgress, { passive: true });
 updateProgress();
 
-// ===== Scroll reveal (Intersection Observer) =====
+// ===== Scroll reveal =====
 const revealEls = document.querySelectorAll("[data-reveal]");
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -19,57 +19,34 @@ const io = new IntersectionObserver((entries) => {
       io.unobserve(entry.target);
     }
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.14 });
 
 revealEls.forEach(el => io.observe(el));
 
-// ===== TOC Drawer =====
-const tocBtn = document.getElementById("tocBtn");
-const tocDrawer = document.getElementById("tocDrawer");
-const tocClose = document.getElementById("tocClose");
-const tocBackdrop = document.getElementById("tocBackdrop");
-const tocLinks = Array.from(document.querySelectorAll(".toc-link"));
+// ===== Tabs active highlight =====
+const tabs = Array.from(document.querySelectorAll(".tab"));
+const sections = ["#message", "#events", "#map"].map(id => document.querySelector(id)).filter(Boolean);
 
-function openToc() {
-  tocDrawer.classList.add("open");
-  tocDrawer.setAttribute("aria-hidden", "false");
-}
-function closeToc() {
-  tocDrawer.classList.remove("open");
-  tocDrawer.setAttribute("aria-hidden", "true");
-}
-
-tocBtn.addEventListener("click", openToc);
-tocClose.addEventListener("click", closeToc);
-tocBackdrop.addEventListener("click", closeToc);
-
-// Smooth scroll on link click
-tocLinks.forEach(a => {
-  a.addEventListener("click", (e) => {
-    e.preventDefault();
-    const id = a.getAttribute("href");
-    const target = document.querySelector(id);
-    closeToc();
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
-});
-
-// ===== TOC active highlight by section =====
-const sectionIds = ["#greeting", "#schedule", "#venue", "#story", "#map"];
-const sectionEls = sectionIds.map(sel => document.querySelector(sel)).filter(Boolean);
-
-const activeIo = new IntersectionObserver((entries) => {
+const tabIo = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = "#" + entry.target.id;
-      tocLinks.forEach(l => l.classList.toggle("active", l.getAttribute("href") === id));
+      tabs.forEach(t => t.classList.toggle("active", t.getAttribute("href") === id));
     }
   });
-}, { threshold: 0.35 });
+}, { threshold: 0.45 });
 
-sectionEls.forEach(el => activeIo.observe(el));
+sections.forEach(s => tabIo.observe(s));
+
+// Smooth scroll for tabs
+tabs.forEach(t => {
+  t.addEventListener("click", (e) => {
+    e.preventDefault();
+    const id = t.getAttribute("href");
+    const target = document.querySelector(id);
+    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
 
 // ===== Countdown =====
 const countdownEl = document.getElementById("countdown");
@@ -92,6 +69,5 @@ function updateCountdown() {
   }
   countdownEl.textContent = formatCountdown(diff);
 }
-
 updateCountdown();
 setInterval(updateCountdown, 60 * 1000);
