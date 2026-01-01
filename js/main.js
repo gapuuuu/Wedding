@@ -1,47 +1,45 @@
-// ===== Scroll progress =====
-const progressBar = document.getElementById("progressBar");
-function updateProgress() {
-  const doc = document.documentElement;
-  const scrollTop = doc.scrollTop || document.body.scrollTop;
-  const scrollHeight = doc.scrollHeight - doc.clientHeight;
-  const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-  progressBar.style.width = `${progress}%`;
-}
-window.addEventListener("scroll", updateProgress, { passive: true });
-updateProgress();
+// タブ：スムーズスクロール
+document.querySelectorAll('.topnav-item').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const id = a.getAttribute('href');
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
 
-// ===== Scroll reveal =====
-const revealEls = document.querySelectorAll("[data-reveal]");
+// スクロール位置で active を切り替え
+const tabs = Array.from(document.querySelectorAll('.topnav-item'));
+const sections = ['#message', '#events', '#rsvp'].map(s => document.querySelector(s)).filter(Boolean);
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("is-visible");
-      io.unobserve(entry.target);
-    }
+    if (!entry.isIntersecting) return;
+    const id = `#${entry.target.id}`;
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('href') === id));
   });
-}, { threshold: 0.14 });
-revealEls.forEach(el => io.observe(el));
+}, { threshold: 0.45 });
 
-// ===== Countdown (per second) =====
+sections.forEach(s => io.observe(s));
+
+// COUNTDOWN（秒単位）
 const weddingDate = new Date("2026-03-27T13:00:00"); // JST想定
-
 const elDays  = document.getElementById("cdDays");
 const elHours = document.getElementById("cdHours");
 const elMins  = document.getElementById("cdMins");
 const elSecs  = document.getElementById("cdSecs");
 
-let prev = { d: null, h: null, m: null, s: null };
-
-function pad2(n){ return String(n).padStart(2, "0"); }
+let prev = { d:null, h:null, m:null, s:null };
+const pad2 = (n) => String(n).padStart(2, "0");
 
 function pulse(el){
   if (!el) return;
-  el.classList.remove("cd-pulse");
-  void el.offsetWidth; // reflow
-  el.classList.add("cd-pulse");
+  el.classList.remove("pulse");
+  void el.offsetWidth;
+  el.classList.add("pulse");
 }
 
-function updateCountdown() {
+function updateCountdown(){
   const now = new Date();
   let diff = weddingDate - now;
 
@@ -53,19 +51,18 @@ function updateCountdown() {
     return;
   }
 
-  const totalSeconds = Math.floor(diff / 1000);
-  const d = Math.floor(totalSeconds / (3600 * 24));
-  const h = Math.floor((totalSeconds % (3600 * 24)) / 3600);
-  const m = Math.floor((totalSeconds % 3600) / 60);
-  const s = totalSeconds % 60;
+  const total = Math.floor(diff / 1000);
+  const d = Math.floor(total / (3600 * 24));
+  const h = Math.floor((total % (3600 * 24)) / 3600);
+  const m = Math.floor((total % 3600) / 60);
+  const s = total % 60;
 
-  // 更新（変化したものだけパルス）
-  if (elDays && prev.d !== d)  { elDays.textContent  = pad2(d); pulse(elDays); }
-  if (elHours && prev.h !== h) { elHours.textContent = pad2(h); pulse(elHours); }
-  if (elMins && prev.m !== m)  { elMins.textContent  = pad2(m); pulse(elMins); }
-  if (elSecs && prev.s !== s)  { elSecs.textContent  = pad2(s); pulse(elSecs); }
+  if (prev.d !== d && elDays)  { elDays.textContent  = pad2(d); pulse(elDays); }
+  if (prev.h !== h && elHours) { elHours.textContent = pad2(h); pulse(elHours); }
+  if (prev.m !== m && elMins)  { elMins.textContent  = pad2(m); pulse(elMins); }
+  if (prev.s !== s && elSecs)  { elSecs.textContent  = pad2(s); pulse(elSecs); }
 
-  prev = { d, h, m, s };
+  prev = { d,h,m,s };
 }
 
 updateCountdown();
