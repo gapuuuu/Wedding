@@ -2,164 +2,78 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Wedding Invitation | 橘風雅 & 平嶋遥歌</title>
+  <title>ご結婚式のご案内</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
-      background: #f7f8f6;
-      color: #333;
-      line-height: 1.9;
-    }
-    .hero {
-      min-height: 100vh;
-      background: url("5FBF8F46-4157-422B-A88E-3CA6F09AB5D1.jpg") center / cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      position: relative;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      padding: 20px;
-    }
-    .hero h1 {
-      font-size: 2.6em;
-      letter-spacing: 0.15em;
-      margin-bottom: 10px;
-    }
-    .hero p {
-      font-size: 1.1em;
-      margin: 6px 0;
-    }
-    section {
-      max-width: 900px;
-      margin: 80px auto;
-      padding: 0 20px;
-    }
-    h2 {
-      text-align: center;
-      font-size: 1.8em;
-      margin-bottom: 40px;
-      letter-spacing: 0.1em;
-    }
-    .message {
-      background: #fff;
-      padding: 40px;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.05);
-    }
-    .message p {
-      margin: 18px 0;
-    }
-    .info {
-      background: #fff;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.05);
-    }
-    .info p {
-      margin: 12px 0;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
-    }
-    .gallery img {
-      width: 100%;
-      border-radius: 14px;
-    }
-    footer {
-      text-align: center;
-      padding: 60px 20px;
-      color: #666;
-      font-size: 0.95em;
-    }
-  </style>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Wedding Invitation</h1>
-      <p>橘 風雅 & 平嶋 遥歌</p>
-      <p>2026.03.27 Fri</p>
+  <main class="container fade">
+
+    <div class="symbol">
+      <img src="images/ume.png" alt="梅結び">
     </div>
-  </div>
 
-  <!-- Message -->
-  <section>
-    <h2>Message</h2>
-    <div class="message">
-      <p>
-        このたび 私たちは結婚式を挙げることとなりました。
-      </p>
-      <p>
-        日頃お世話になっている皆さまに<br>
-        感謝の気持ちを込めて<br>
-        自然に囲まれたガーデンで<br>
-        ささやかなパーティーを開催いたします。
-      </p>
-      <p>
-        おいしいお食事とともに<br>
-        笑顔あふれる時間を<br>
-        ご一緒できましたら幸いです。
-      </p>
-    </div>
-  </section>
+    <section class="vertical text">
+      <h1>ごあいさつ</h1>
 
-  <!-- Event Info -->
-  <section>
-    <h2>Information</h2>
-    <div class="info">
-      <p><strong>日程：</strong>2026年3月27日（金）</p>
-      <p><strong>受付：</strong>12:00</p>
-      <p><strong>挙式：</strong>13:00</p>
-      <p><strong>披露宴：</strong>14:00</p>
-      <p><strong>会場：</strong>SASA（ササ）</p>
-      <p><strong>住所：</strong>〒561-0873 大阪府豊中市服部緑地1-8</p>
+      <p>
+        謹敬<br><br>
+        皆様におかれましては<br>
+        ますますご清祥のことと<br>
+        お慶び申し上げます<br><br>
 
+        このたび私たちは<br>
+        結婚式を挙げる運びとなりました<br><br>
+
+        日頃お世話になっております<br>
+        皆様とともに<br>
+        ささやかながら<br>
+        心あたたまる一日を<br>
+        過ごせましたら幸いです
+      </p>
+
+      <p class="names">
+        橘 風雅<br>
+        平嶋 遥歌
+      </p>
+    </section>
+
+    <section class="vertical info">
+      <h2>日時</h2>
+      <p>
+        二〇二六年三月二十七日（金）<br><br>
+        受付　十二時<br>
+        挙式　十三時<br>
+        披露宴　十四時
+      </p>
+
+      <h2>会場</h2>
+      <p>
+        SASA（ササ）<br>
+        大阪府豊中市服部緑地一―八
+      </p>
+    </section>
+
+    <section class="vertical countdown">
+      <p id="countdown"></p>
+    </section>
+
+    <section class="map">
       <iframe
-        src="https://www.google.com/maps?q=大阪府豊中市服部緑地1-8&output=embed"
-        width="100%"
-        height="320"
-        style="border:0; margin-top:24px; border-radius:12px;"
+        src="https://www.google.com/maps?q=SASA%20%E6%9C%8D%E9%83%A8%E7%B7%91%E5%9C%B0&output=embed"
         loading="lazy">
       </iframe>
-    </div>
-  </section>
+    </section>
 
-  <!-- Gallery -->
-  <section>
-    <h2>Our Memories</h2>
-    <div class="gallery">
-      <img src="D3B0DDFB-33DF-4B26-930D-43BC1B878C7C.jpg">
-      <img src="ACFC030D-B547-48F9-BB41-7E0FA3FFE21A.jpg">
-      <img src="98C369B9-4136-4B94-853F-E1C77FF28C4A.jpg">
-    </div>
-  </section>
+  </main>
 
-  <!-- Footer -->
-  <footer>
-    <p>
-      当日は皆さまとお会いできますことを<br>
-      心より楽しみにしております
-    </p>
-    <p>橘 風雅 & 平嶋 遥歌</p>
-  </footer>
-
+  <!-- JS -->
+  <script src="js/main.js"></script>
 </body>
 </html>
