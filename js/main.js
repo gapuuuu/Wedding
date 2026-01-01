@@ -58,9 +58,7 @@ tocLinks.forEach(a => {
 
 // ===== TOC active highlight by section =====
 const sectionIds = ["#greeting", "#schedule", "#venue", "#story", "#map"];
-const sectionEls = sectionIds
-  .map(sel => document.querySelector(sel))
-  .filter(Boolean);
+const sectionEls = sectionIds.map(sel => document.querySelector(sel)).filter(Boolean);
 
 const activeIo = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -75,7 +73,7 @@ sectionEls.forEach(el => activeIo.observe(el));
 
 // ===== Countdown =====
 const countdownEl = document.getElementById("countdown");
-const weddingDate = new Date("2026-03-27T13:00:00"); // ローカル時刻（日本ならJST扱い）
+const weddingDate = new Date("2026-03-27T13:00:00");
 
 function formatCountdown(diffMs) {
   const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
