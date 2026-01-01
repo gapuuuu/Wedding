@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  font-family: "Noto Serif JP", serif;
+  background: #fff;
+  color: #222;
+}
+
+.vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  line-height: 2.2;
+  letter-spacing: 0.15em;
+  margin: 80px auto;
+}
