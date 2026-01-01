@@ -6,65 +6,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="2026年3月27日（金）SASA（服部緑地）にて挙式・披露宴を執り行います。" />
 
-  <!-- Fonts：ポップ英字＋読みやすい日本語 -->
+  <!-- Fonts: 参考の雰囲気（手書き + 上品セリフ + 読みやすいJP） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Fredoka:wght@400;600&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&family=Playfair+Display:opsz,wght@5..120,500;5..120,700&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <!-- Background confetti (CSS only) -->
-  <div class="confetti" aria-hidden="true"></div>
+  <!-- neon confetti (CSS) -->
+  <div class="fx" aria-hidden="true"></div>
 
   <!-- progress -->
   <div class="progress" aria-hidden="true"><div class="bar" id="progressBar"></div></div>
 
   <!-- HERO -->
-  <header class="hero" id="top">
+  <header class="hero" id="top" aria-label="Wedding Invitation">
     <div class="hero-bg" style="background-image:url('images/hero.jpg')"></div>
-    <div class="hero-overlay"></div>
+    <div class="hero-tint" aria-hidden="true"></div>
+
+    <!-- arrows (見た目だけ：参考画像の雰囲気) -->
+    <div class="hero-arrow hero-arrow-l" aria-hidden="true">‹</div>
+    <div class="hero-arrow hero-arrow-r" aria-hidden="true">›</div>
 
     <div class="hero-inner">
-      <div class="hero-badge">2026.03.27 FRI</div>
+      <div class="hero-kicker">2026.03.27 FRI</div>
 
-      <div class="hero-title">
-        <div class="hero-scribble" aria-hidden="true"></div>
-        <div class="hero-text">WEDDING INVITATION</div>
-      </div>
+      <h1 class="hero-title">
+        WEDDING INVITATION
+      </h1>
 
       <div class="hero-names">
         <span>橘 風雅</span>
-        <span class="dot">×</span>
+        <span class="x">×</span>
         <span>平嶋 遥歌</span>
       </div>
 
-      <div class="hero-cta">
-        <a class="btn" href="#tabs">MESSAGE / EVENTS / MAP</a>
+      <div class="hero-tabs">
+        <a class="hero-tab" href="#message"><span>MESSAGE</span><small>ご挨拶</small></a>
+        <a class="hero-tab" href="#events"><span>EVENTS</span><small>日時・会場</small></a>
+        <a class="hero-tab" href="#map"><span>MAP</span><small>地図</small></a>
       </div>
 
-      <div class="hero-hint">Scroll ↓</div>
+      <div class="hero-scroll">SCROLL</div>
     </div>
 
-    <!-- decorative corners -->
-    <div class="corner corner-l"></div>
-    <div class="corner corner-r"></div>
+    <div class="hero-corner hero-corner-l" aria-hidden="true"></div>
+    <div class="hero-corner hero-corner-r" aria-hidden="true"></div>
   </header>
-
-  <!-- Tabs -->
-  <nav class="tabs" id="tabs" aria-label="ページ内ナビ">
-    <a class="tab active" href="#message">MESSAGE</a>
-    <a class="tab" href="#events">EVENTS</a>
-    <a class="tab" href="#map">MAP</a>
-  </nav>
 
   <main class="container">
 
     <!-- MESSAGE -->
     <section id="message" class="card reveal" data-reveal>
       <div class="card-head">
-        <div class="chip chip-pink">MESSAGE</div>
+        <div class="tag tag-lime">MESSAGE</div>
         <h2>ごあいさつ</h2>
       </div>
 
@@ -78,7 +75,6 @@
       <div class="names">橘 風雅　／　平嶋 遥歌</div>
     </section>
 
-    <!-- Photo -->
     <section class="photo reveal" data-reveal>
       <img src="images/nyuseki.jpg" alt="写真">
     </section>
@@ -86,7 +82,7 @@
     <!-- EVENTS -->
     <section id="events" class="card reveal" data-reveal>
       <div class="card-head">
-        <div class="chip chip-blue">EVENTS</div>
+        <div class="tag tag-green">EVENTS</div>
         <h2>日時・会場</h2>
       </div>
 
@@ -116,40 +112,44 @@
           <div class="v">〒561-0873 大阪府豊中市服部緑地1-8</div>
         </div>
       </div>
-
-      <!-- Stylish countdown -->
-      <div class="countwrap" aria-label="カウントダウン">
-        <div class="count-title">Countdown to Ceremony</div>
-        <div class="count-grid" id="countGrid">
-          <div class="count-box">
-            <div class="num" id="cdDays">--</div>
-            <div class="lab">DAYS</div>
-          </div>
-          <div class="count-box">
-            <div class="num" id="cdHours">--</div>
-            <div class="lab">HOURS</div>
-          </div>
-          <div class="count-box">
-            <div class="num" id="cdMins">--</div>
-            <div class="lab">MIN</div>
-          </div>
-          <div class="count-box">
-            <div class="num" id="cdSecs">--</div>
-            <div class="lab">SEC</div>
-          </div>
-        </div>
-        <div class="count-sub" id="countSub">挙式開始：2026-03-27 13:00</div>
-      </div>
     </section>
 
     <section class="photo reveal" data-reveal>
       <img src="images/kaoawase.jpg" alt="写真">
     </section>
 
-    <section class="banner reveal" data-reveal>
-      <div class="banner-inner">
-        <div class="banner-title">Garden Wedding</div>
-        <div class="banner-text">自然に囲まれた場所で、笑顔の一日を。</div>
+    <!-- COUNTDOWN (参考画像寄せ：大きいセリフ / to YYYY.MM.DD / 縦ラベル) -->
+    <section class="countdown reveal" data-reveal aria-label="カウントダウン">
+      <div class="cd-bg" style="background-image:url('images/hawaii.jpg')"></div>
+      <div class="cd-overlay" aria-hidden="true"></div>
+
+      <div class="cd-inner">
+        <div class="cd-title">COUNTDOWN</div>
+        <div class="cd-sub">to <span class="cd-date">2026.03.27</span></div>
+
+        <div class="cd-row" role="group" aria-label="残り時間">
+          <div class="cd-col">
+            <div class="cd-label vertical">DAYS</div>
+            <div class="cd-num" id="cdDays">0</div>
+          </div>
+
+          <div class="cd-col">
+            <div class="cd-label vertical">HOURS</div>
+            <div class="cd-num" id="cdHours">0</div>
+          </div>
+
+          <div class="cd-col">
+            <div class="cd-label vertical">MINUTES</div>
+            <div class="cd-num" id="cdMins">0</div>
+          </div>
+
+          <div class="cd-col">
+            <div class="cd-label vertical">SECONDS</div>
+            <div class="cd-num" id="cdSecs">0</div>
+          </div>
+        </div>
+
+        <div class="cd-foot">Ceremony starts at 13:00</div>
       </div>
     </section>
 
@@ -160,7 +160,7 @@
     <!-- MAP -->
     <section id="map" class="card reveal" data-reveal>
       <div class="card-head">
-        <div class="chip chip-yellow">MAP</div>
+        <div class="tag tag-yellow">MAP</div>
         <h2>アクセス</h2>
       </div>
 
