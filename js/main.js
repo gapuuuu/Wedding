@@ -20,7 +20,6 @@ const io = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.14 });
-
 revealEls.forEach(el => io.observe(el));
 
 // ===== Tabs active highlight =====
@@ -48,26 +47,53 @@ tabs.forEach(t => {
   });
 });
 
-// ===== Countdown =====
-const countdownEl = document.getElementById("countdown");
-const weddingDate = new Date("2026-03-27T13:00:00");
+// ===== Countdown (per second) =====
+const weddingDate = new Date("2026-03-27T13:00:00"); // JST想定
+const elDays = document.getElementById("cdDays");
+const elHours = document.getElementById("cdHours");
+const elMins = document.getElementById("cdMins");
+const elSecs = document.getElementById("cdSecs");
+const countGrid = document.getElementById("countGrid");
 
-function formatCountdown(diffMs) {
-  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diffMs / (1000 * 60 * 60)) % 24);
-  return `挙式まで あと ${days}日 ${hours}時間`;
+let prev = { d: null, h: null, m: null, s: null };
+
+function pad2(n){ return String(n).padStart(2, "0"); }
+
+function tickPop() {
+  if (!countGrid) return;
+  countGrid.classList.remove("tick");
+  // reflow
+  void countGrid.offsetWidth;
+  countGrid.classList.add("tick");
 }
 
 function updateCountdown() {
-  if (!countdownEl) return;
   const now = new Date();
-  const diff = weddingDate - now;
+  let diff = weddingDate - now;
 
   if (diff <= 0) {
-    countdownEl.textContent = "本日は誠におめでとうございます";
+    if (elDays) elDays.textContent = "00";
+    if (elHours) elHours.textContent = "00";
+    if (elMins) elMins.textContent = "00";
+    if (elSecs) elSecs.textContent = "00";
     return;
   }
-  countdownEl.textContent = formatCountdown(diff);
+
+  const totalSeconds = Math.floor(diff / 1000);
+  const d = Math.floor(totalSeconds / (3600 * 24));
+  const h = Math.floor((totalSeconds % (3600 * 24)) / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+
+  if (elDays) elDays.textContent = pad2(d);
+  if (elHours) elHours.textContent = pad2(h);
+  if (elMins) elMins.textContent = pad2(m);
+  if (elSecs) elSecs.textContent = pad2(s);
+
+  // 秒が変わったときだけポップ
+  if (prev.s !== null && prev.s !== s) tickPop();
+  prev = { d, h, m, s };
 }
+
 updateCountdown();
-setInterval(updateCountdown, 60 * 1000);
+setInterval(updateCountdown, 1000);
