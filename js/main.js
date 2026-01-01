@@ -10,7 +10,9 @@ document.querySelectorAll('.topnav-item').forEach(a => {
 
 // スクロール位置で active を切り替え
 const tabs = Array.from(document.querySelectorAll('.topnav-item'));
-const sections = ['#message', '#events', '#rsvp'].map(s => document.querySelector(s)).filter(Boolean);
+const sections = ['#message', '#events', '#rsvp']
+  .map(s => document.querySelector(s))
+  .filter(Boolean);
 
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -35,7 +37,7 @@ const pad2 = (n) => String(n).padStart(2, "0");
 function pulse(el){
   if (!el) return;
   el.classList.remove("pulse");
-  void el.offsetWidth;
+  void el.offsetWidth; // reflow
   el.classList.add("pulse");
 }
 
