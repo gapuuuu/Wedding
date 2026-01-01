@@ -22,49 +22,23 @@ const io = new IntersectionObserver((entries) => {
 }, { threshold: 0.14 });
 revealEls.forEach(el => io.observe(el));
 
-// ===== Tabs active highlight =====
-const tabs = Array.from(document.querySelectorAll(".tab"));
-const sections = ["#message", "#events", "#map"].map(id => document.querySelector(id)).filter(Boolean);
-
-const tabIo = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = "#" + entry.target.id;
-      tabs.forEach(t => t.classList.toggle("active", t.getAttribute("href") === id));
-    }
-  });
-}, { threshold: 0.45 });
-
-sections.forEach(s => tabIo.observe(s));
-
-// Smooth scroll for tabs
-tabs.forEach(t => {
-  t.addEventListener("click", (e) => {
-    e.preventDefault();
-    const id = t.getAttribute("href");
-    const target = document.querySelector(id);
-    if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-});
-
 // ===== Countdown (per second) =====
 const weddingDate = new Date("2026-03-27T13:00:00"); // JST想定
-const elDays = document.getElementById("cdDays");
+
+const elDays  = document.getElementById("cdDays");
 const elHours = document.getElementById("cdHours");
-const elMins = document.getElementById("cdMins");
-const elSecs = document.getElementById("cdSecs");
-const countGrid = document.getElementById("countGrid");
+const elMins  = document.getElementById("cdMins");
+const elSecs  = document.getElementById("cdSecs");
 
 let prev = { d: null, h: null, m: null, s: null };
 
 function pad2(n){ return String(n).padStart(2, "0"); }
 
-function tickPop() {
-  if (!countGrid) return;
-  countGrid.classList.remove("tick");
-  // reflow
-  void countGrid.offsetWidth;
-  countGrid.classList.add("tick");
+function pulse(el){
+  if (!el) return;
+  el.classList.remove("cd-pulse");
+  void el.offsetWidth; // reflow
+  el.classList.add("cd-pulse");
 }
 
 function updateCountdown() {
@@ -72,10 +46,10 @@ function updateCountdown() {
   let diff = weddingDate - now;
 
   if (diff <= 0) {
-    if (elDays) elDays.textContent = "00";
+    if (elDays)  elDays.textContent  = "00";
     if (elHours) elHours.textContent = "00";
-    if (elMins) elMins.textContent = "00";
-    if (elSecs) elSecs.textContent = "00";
+    if (elMins)  elMins.textContent  = "00";
+    if (elSecs)  elSecs.textContent  = "00";
     return;
   }
 
@@ -85,13 +59,12 @@ function updateCountdown() {
   const m = Math.floor((totalSeconds % 3600) / 60);
   const s = totalSeconds % 60;
 
-  if (elDays) elDays.textContent = pad2(d);
-  if (elHours) elHours.textContent = pad2(h);
-  if (elMins) elMins.textContent = pad2(m);
-  if (elSecs) elSecs.textContent = pad2(s);
+  // 更新（変化したものだけパルス）
+  if (elDays && prev.d !== d)  { elDays.textContent  = pad2(d); pulse(elDays); }
+  if (elHours && prev.h !== h) { elHours.textContent = pad2(h); pulse(elHours); }
+  if (elMins && prev.m !== m)  { elMins.textContent  = pad2(m); pulse(elMins); }
+  if (elSecs && prev.s !== s)  { elSecs.textContent  = pad2(s); pulse(elSecs); }
 
-  // 秒が変わったときだけポップ
-  if (prev.s !== null && prev.s !== s) tickPop();
   prev = { d, h, m, s };
 }
 
