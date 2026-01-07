@@ -37,7 +37,7 @@ const pad2 = (n) => String(n).padStart(2, "0");
 function pulse(el){
   if (!el) return;
   el.classList.remove("pulse");
-  void el.offsetWidth; // reflow
+  void el.offsetWidth;
   el.classList.add("pulse");
 }
 
