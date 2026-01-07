@@ -17,7 +17,7 @@ body{
   background:#fff;
 }
 
-/* HERO（黄色ベタ、タブが切れない） */
+/* HERO */
 .hero{
   position: relative;
   height: 62vh;
@@ -25,7 +25,6 @@ body{
   background: var(--yellow);
   overflow: visible;
 }
-
 .hero-inner{
   position:absolute; inset:0;
   display:grid;
@@ -34,50 +33,51 @@ body{
   overflow:hidden;
 }
 
-/* ④ hero.png + 横の写真 */
-.hero-media{
-  width: min(980px, 94vw);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap: clamp(10px, 2vw, 18px);
-}
-
-.hero-people{
-  width: min(560px, 62vw);
-  max-height: 52vh;
-  object-fit: contain;
-  display:block;
-  filter: drop-shadow(0 16px 18px rgba(0,0,0,0.18));
-}
-
-/* 横のスライド */
-.hero-side{
-  width: min(300px, 26vw);
-  height: min(320px, 46vh);
+/* スライド枠（hero.pngの場所） */
+.hero-stage{
+  width: min(760px, 92vw);
+  height: min(52vh, 420px);
   position: relative;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.14);
+  filter: drop-shadow(0 16px 18px rgba(0,0,0,0.18));
   border: 2px solid rgba(255,255,255,0.45);
-  background: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.12);
 }
 
-.hero-slide{
+.hero-frame{
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  object-fit: cover;
+  object-fit: contain; /* hero.png(切り抜き)もOK */
   opacity:0;
   transform: scale(1.02);
-  transition: opacity 600ms ease, transform 900ms ease;
+  transition: opacity 520ms ease, transform 900ms ease;
+  display:block;
 }
-
-.hero-slide.is-active{
+.hero-frame.is-active{
   opacity:1;
   transform: scale(1.0);
 }
+
+/* 矢印ボタン */
+.hero-btn{
+  position:absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.95);
+  display:grid; place-items:center;
+  font-size: 28px;
+  z-index: 6;
+  cursor:pointer;
+}
+.hero-btn.left{ left: 14px; }
+.hero-btn.right{ right: 14px; }
 
 .hero-title{
   position:absolute;
@@ -110,24 +110,7 @@ body{
     radial-gradient(circle at 55% 70%, rgba(255,255,255,.9) 0 3px, transparent 4px);
 }
 
-/* arrows */
-.hero-arrow{
-  position:absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 44px; height: 44px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.16);
-  border: 1px solid rgba(255,255,255,0.35);
-  color: rgba(255,255,255,0.95);
-  display:grid; place-items:center;
-  font-size: 28px;
-  z-index: 6;
-}
-.hero-arrow.left{ left: 14px; }
-.hero-arrow.right{ right: 14px; }
-
-/* top tabs（②の切れ対策） */
+/* top tabs */
 .topnav{
   position:absolute;
   bottom: -30px;
@@ -139,18 +122,15 @@ body{
   gap: 10px;
   z-index: 7;
 }
-
 .topnav-item{
   background:#fff;
   border: 1px solid var(--line);
-  border-radius: 0;
   padding: 12px 8px 14px;
-  min-height: 64px;  /* ←日本語が切れない */
+  min-height: 64px;
   text-align:center;
   box-shadow: 0 10px 24px rgba(0,0,0,0.10);
   text-decoration: none;
 }
-
 .topnav-item .en{
   font-weight: 700;
   letter-spacing:.08em;
@@ -165,50 +145,27 @@ body{
   line-height: 1.2;
 }
 
-.page{
-  padding-top: 56px;
-  background:#fff;
-}
+.page{ padding-top: 56px; background:#fff; }
 
 /* PANEL */
-.panel{
-  position: relative;
-  background:#fff;
-  padding: 28px 12px;
-}
-.panel-inner{
-  max-width: 980px;
-  margin: 0 auto;
-}
+.panel{ position: relative; background:#fff; padding: 28px 12px; }
+.panel-inner{ max-width: 980px; margin: 0 auto; }
 .panel-inner.center{ text-align:center; }
 .panel-inner.wide{ max-width: 1080px; }
 
 .panel-tri::before,
-.panel-tri::after{
-  content:"";
-  position:absolute;
-  width:0; height:0;
-  top:0;
-}
+.panel-tri::after{ content:""; position:absolute; width:0; height:0; top:0; }
 .panel-tri[data-tri="pink-yellow"]::before{
-  left:0;
-  border-right: 56px solid transparent;
-  border-top: 56px solid var(--pink);
+  left:0; border-right: 56px solid transparent; border-top: 56px solid var(--pink);
 }
 .panel-tri[data-tri="pink-yellow"]::after{
-  right:0;
-  border-left: 56px solid transparent;
-  border-top: 56px solid var(--triYellow);
+  right:0; border-left: 56px solid transparent; border-top: 56px solid var(--triYellow);
 }
 .panel-tri[data-tri="blue-orange"]::before{
-  left:0;
-  border-right: 56px solid transparent;
-  border-top: 56px solid var(--blue);
+  left:0; border-right: 56px solid transparent; border-top: 56px solid var(--blue);
 }
 .panel-tri[data-tri="blue-orange"]::after{
-  right:0;
-  border-left: 56px solid transparent;
-  border-top: 56px solid var(--orange);
+  right:0; border-left: 56px solid transparent; border-top: 56px solid var(--orange);
 }
 .panel-tri[data-tri="none"]::before,
 .panel-tri[data-tri="none"]::after{ display:none; }
@@ -222,35 +179,14 @@ body{
   margin: 8px 0 18px;
   line-height: 1.25;
   padding-bottom: 8px;
-  overflow: visible;
 }
-
-.jp{
-  line-height: 2.0;
-  letter-spacing: .02em;
-  color: rgba(0,0,0,0.78);
-  font-size: 14px;
-}
-.jp.small{
-  font-size: 12px;
-  color: rgba(0,0,0,0.55);
-  margin-top: 6px;
-}
-.sign{
-  margin-top: 18px;
-  font-size: 12px;
-  color: rgba(0,0,0,0.62);
-  line-height: 1.9;
-}
+.jp{ line-height: 2.0; letter-spacing: .02em; color: rgba(0,0,0,0.78); font-size: 14px; }
+.jp.small{ font-size: 12px; color: rgba(0,0,0,0.55); margin-top: 6px; }
+.sign{ margin-top: 18px; font-size: 12px; color: rgba(0,0,0,0.62); line-height: 1.9; }
 .sign span{ font-weight:700; letter-spacing:.08em; }
 
 /* icons */
-.icon{
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 10px;
-  color: rgba(0,0,0,0.72);
-}
+.icon{ width: 48px; height: 48px; margin: 0 auto 10px; color: rgba(0,0,0,0.72); }
 .icon svg{ width:100%; height:100%; }
 
 /* AND */
@@ -261,21 +197,15 @@ body{
   letter-spacing:.18em;
   font-size: 60px;
   line-height: 1.1;
-  padding-bottom: 6px;
   margin: 6px 0 10px;
 }
-.and-doodle{
-  position:absolute;
-  top: 18px;
-  font-size: 40px;
-  opacity:.9;
-}
+.and-doodle{ position:absolute; top: 18px; font-size: 40px; opacity:.9; }
 .and-doodle.left{ left: 18px; }
 .and-doodle.right{ right: 18px; }
 
 .two{
   display:grid;
-  grid-template-columns: 1fr 1fr; /* ③ スマホでも基本は横並び維持 */
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
   padding: 20px 10px 0;
 }
@@ -303,7 +233,7 @@ body{
 .lines b{ color: rgba(0,0,0,0.58); }
 .spacer{ height: 10px; }
 
-/* COUNTDOWN */
+/* COUNTDOWN（太字＋数字だけ背景） */
 .countband{
   position: relative;
   background: var(--yellow);
@@ -318,7 +248,6 @@ body{
   color: rgba(255,255,255,0.95);
   margin: 0;
   line-height: 1.15;
-  padding-bottom: 6px;
 }
 .count-to{
   margin-top: 6px;
@@ -335,20 +264,33 @@ body{
   gap: 10px;
 }
 .count-cell{ padding: 12px 6px; }
+
+/* 数字：太く・背景を付ける */
 .count-num{
   font-family:"Amatic SC", cursive;
-  font-size: 64px;
-  color: rgba(255,255,255,0.98);
+  font-weight: 700;
+  font-size: 68px;
   line-height: 1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding: 10px 16px 8px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.98);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+  min-width: 90px;
 }
+
 .count-lab{
-  margin-top: 6px;
+  margin-top: 10px;
   font-size: 12px;
   letter-spacing:.10em;
   color: rgba(255,255,255,0.92);
 }
 
-/* ① GIF */
+/* GIF */
 .count-gif-wrap{
   margin: 16px auto 0;
   width: min(980px, 100%);
@@ -390,7 +332,7 @@ body{
   align-items:start;
 }
 
-/* ② 切れ防止：サイズ、行間、最大幅 */
+/* PC：ひし形 */
 .diamond{
   width: 280px;
   height: 280px;
@@ -407,7 +349,6 @@ body{
   text-align:center;
   max-width: 210px;
 }
-
 .d-top{
   font-weight:700;
   letter-spacing:.06em;
@@ -416,12 +357,7 @@ body{
   gap: 8px;
   justify-items:center;
 }
-.d-top small{
-  display:block;
-  font-size: 11px;
-  opacity:.95;
-  letter-spacing:.08em;
-}
+.d-top small{ font-size: 11px; opacity:.95; letter-spacing:.08em; }
 
 .jp-vertical{
   writing-mode: vertical-rl;
@@ -431,33 +367,23 @@ body{
   letter-spacing: .08em;
 }
 
-.d-mid{
-  margin-top: 6px;
-  font-size: 13px;
-  font-weight:700;
-  line-height: 1.4;
-}
+.d-mid{ margin-top: 6px; font-size: 13px; font-weight:700; line-height: 1.4; }
+.d-time{ margin-top: 6px; font-size: 26px; font-weight:700; letter-spacing:.06em; line-height: 1.1; }
 
-.d-time{
-  margin-top: 6px;
-  font-size: 26px;
-  font-weight:700;
-  letter-spacing:.06em;
-  line-height: 1.1;
-}
-
+/* 受付時間：切れないように折り返し許可＆余白 */
 .d-sub{
-  margin-top: 6px;
+  margin-top: 8px;
   font-size: 11px;
   opacity:.95;
-  line-height: 1.4;
-  white-space: nowrap; /* 受付時間が折返しで崩れない */
+  line-height: 1.45;
+  white-space: normal;
+  padding: 0 6px;
 }
 
 /* MAP PANEL */
 .greenbox{
   max-width: 980px;
-  margin: 36px auto 0; /* ひし形と被らないように余白増 */
+  margin: 36px auto 0;
   background: var(--greenPanel);
   padding: 26px 16px 22px;
   color: rgba(0,0,0,0.82);
@@ -472,7 +398,6 @@ body{
   gap: 6px;
   align-items:center;
 }
-
 .venue-link{
   font-weight:700;
   font-size: 12px;
@@ -480,14 +405,7 @@ body{
   text-decoration: underline;
   word-break: break-all;
 }
-
-.addr{
-  text-align:center;
-  margin-top: 8px;
-  font-size: 12px;
-  opacity:.95;
-}
-
+.addr{ text-align:center; margin-top: 8px; font-size: 12px; opacity:.95; }
 .mapnote{
   text-align:center;
   margin: 14px 0 10px;
@@ -509,44 +427,24 @@ body{
   display:block;
 }
 
-/* 悪天候（フォント統一） */
+/* 悪天候フォント統一 */
 .notes{
   max-width: 760px;
   margin: 16px auto 0;
   font-size: 12px;
   line-height: 1.9;
   color: rgba(0,0,0,0.82);
-  font-family:"Noto Sans JP", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
-.note-title{
-  font-weight:700;
-  margin-top: 12px;
-}
-.note-text{
-  margin-top: 8px;
-  font-size: 12px;
-  line-height: 1.9;
-  color: rgba(0,0,0,0.82);
-}
+.note-title{ font-weight:700; margin-top: 12px; }
+.note-text{ margin-top: 8px; font-size: 12px; line-height: 1.9; }
 
 /* Footer */
-.footer{
-  text-align:center;
-  padding: 34px 12px 48px;
-  color: rgba(0,0,0,0.70);
-}
+.footer{ text-align:center; padding: 34px 12px 48px; color: rgba(0,0,0,0.70); }
 .ft{ line-height: 1.9; }
 .ftn{ margin-top: 10px; font-weight:700; letter-spacing:.10em; }
-.top{
-  display:inline-block;
-  margin-top: 14px;
-  font-weight:700;
-  opacity:.75;
-  text-decoration:none;
-  color:inherit;
-}
+.top{ display:inline-block; margin-top: 14px; font-weight:700; opacity:.75; text-decoration:none; color:inherit; }
 
-/* Countdown tick */
+/* pulse */
 .pulse{ animation: pulse 160ms ease; }
 @keyframes pulse{
   from{ transform: translateY(0) scale(1); }
@@ -554,36 +452,55 @@ body{
   to{ transform: translateY(0) scale(1); }
 }
 
-/* --- Responsive --- */
+/* ---- Responsive ---- */
 
-/* ② スマホで「挙式/披露宴が被る」を潰す：早めに1列にする */
+/* スマホで被る問題を確実に潰す：ひし形を「回転なしカード」に変更 */
 @media (max-width: 900px){
   .diamond-wrap{
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 18px;
   }
+
+  .diamond{
+    width: min(560px, 92vw);
+    height: auto;
+    transform: none;                /* ←回転やめる（被り根絶） */
+    border-radius: 18px;
+    padding: 18px 14px 16px;
+    box-shadow: 0 12px 26px rgba(0,0,0,0.10);
+  }
+
+  .diamond > *{
+    transform: none;
+    max-width: none;
+  }
+
+  .d-top{
+    gap: 6px;
+  }
+
+  .jp-vertical{
+    writing-mode: horizontal-tb;    /* ←スマホは普通表示の方が読みやすい */
+    text-orientation: mixed;
+    font-size: 16px;
+  }
+
+  .d-time{ font-size: 30px; }
+  .d-sub{ font-size: 12px; padding: 0; }
 }
 
-/* Mobile */
 @media (max-width: 760px){
   .hero-title{ bottom: 148px; }
   .topnav{ width: calc(100% - 22px); gap: 8px; bottom: -34px; }
   .topnav-item{ min-height: 66px; padding-bottom: 16px; }
 
-  /* ④ スマホは横スライドは小さめ＆下に回す */
-  .hero-media{
-    flex-direction: column;
-  }
-  .hero-people{
-    width: min(640px, 86vw);
-    max-height: 40vh;
-  }
-  .hero-side{
-    width: min(640px, 86vw);
-    height: 160px;
+  .hero-stage{
+    width: min(760px, 92vw);
+    height: 44vh;
+    min-height: 260px;
   }
 
-  /* ③ スマホでも新郎新婦を横並び維持（小さくする） */
+  /* AND：スマホでも横並び優先 */
   .two{
     grid-template-columns: 1fr 1fr;
     gap: 12px;
@@ -599,17 +516,9 @@ body{
   }
 
   .count-grid{ grid-template-columns: 1fr 1fr; }
-
-  /* ② 受付時間が切れないように、ひし形を少し大きく＆中身幅 */
-  .diamond{ width: 248px; height: 248px; }
-  .diamond > *{ max-width: 190px; }
-  .d-sub{ font-size: 11px; }
-  .jp-vertical{ font-size: 15px; }
-
-  .mapframe iframe{ height: 300px; }
+  .count-num{ min-width: 86px; font-size: 64px; padding: 10px 14px 8px; }
 }
 
-/* かなり小さい端末だけ、ANDを折り返し（無理に横を維持すると読めないため） */
 @media (max-width: 360px){
-  .two{ grid-template-columns: 1fr; }
+  .two{ grid-template-columns: 1fr; } /* 超小型だけ縦 */
 }
