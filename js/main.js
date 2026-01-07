@@ -24,7 +24,7 @@ const io = new IntersectionObserver((entries) => {
 
 sections.forEach(s => io.observe(s));
 
-// COUNTDOWN（秒単位）
+/* COUNTDOWN（秒単位） */
 const weddingDate = new Date("2026-03-27T13:00:00"); // JST想定
 const elDays  = document.getElementById("cdDays");
 const elHours = document.getElementById("cdHours");
@@ -69,3 +69,58 @@ function updateCountdown(){
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+/* HERO SLIDER：矢印クリック/スワイプ/3秒自動 */
+const frames = Array.from(document.querySelectorAll('.hero-frame'));
+const btnPrev = document.getElementById('heroPrev');
+const btnNext = document.getElementById('heroNext');
+const stage = document.getElementById('heroStage');
+
+let idx = 0;
+let timer = null;
+
+function show(i){
+  if (!frames.length) return;
+  idx = (i + frames.length) % frames.length;
+  frames.forEach((f, j) => f.classList.toggle('is-active', j === idx));
+}
+
+function next(){ show(idx + 1); }
+function prevSlide(){ show(idx - 1); }
+
+function startAuto(){
+  stopAuto();
+  timer = setInterval(next, 3000); // 3秒自動切替
+}
+function stopAuto(){
+  if (timer) clearInterval(timer);
+  timer = null;
+}
+
+if (btnNext) btnNext.addEventListener('click', () => { next(); startAuto(); });
+if (btnPrev) btnPrev.addEventListener('click', () => { prevSlide(); startAuto(); });
+
+/* スワイプ */
+let touchStartX = null;
+if (stage){
+  stage.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    stopAuto();
+  }, { passive:true });
+
+  stage.addEventListener('touchend', (e) => {
+    if (touchStartX == null) return;
+    const x = e.changedTouches[0].clientX;
+    const dx = x - touchStartX;
+    touchStartX = null;
+
+    if (Math.abs(dx) > 40){
+      if (dx < 0) next();
+      else prevSlide();
+    }
+    startAuto();
+  }, { passive:true });
+}
+
+show(0);
+startAuto();
