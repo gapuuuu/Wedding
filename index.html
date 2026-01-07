@@ -5,7 +5,6 @@
   <title>Wedding Invitation｜橘 風雅 & 平嶋 遥歌</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- 見出し系 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Kalam:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -14,20 +13,30 @@
 </head>
 <body>
 
-  <!-- HERO（黄色をベタ敷き・タブの日本語が切れない） -->
+  <!-- HERO：黄色ベタ + hero.png + 横に写真（自動切替） -->
   <header class="hero" id="top">
     <div class="hero-arrow left" aria-hidden="true">‹</div>
     <div class="hero-arrow right" aria-hidden="true">›</div>
 
     <div class="hero-inner">
-      <img class="hero-people" src="images/hero.png" alt="hero">
+      <div class="hero-media">
+        <img class="hero-people" src="images/hero.png" alt="hero">
+
+        <!-- ④ 横のスライド（自動切替） -->
+        <div class="hero-side" aria-label="hero photo slides">
+          <img class="hero-slide is-active" src="images/hero_slide1.jpg" alt="slide 1">
+          <img class="hero-slide" src="images/hero_slide2.jpg" alt="slide 2">
+          <img class="hero-slide" src="images/hero_slide3.jpg" alt="slide 3">
+        </div>
+      </div>
+
       <div class="hero-title-wrap" aria-hidden="true">
         <div class="hero-doodle"></div>
       </div>
       <h1 class="hero-title">WEDDING INVITATION</h1>
     </div>
 
-    <!-- タブ -->
+    <!-- タブ：日本語が切れない -->
     <nav class="topnav" aria-label="section navigation">
       <a class="topnav-item active" href="#message">
         <div class="en">MESSAGE</div>
@@ -85,7 +94,7 @@
       </div>
     </section>
 
-    <!-- AND（プロフィール2カラム） -->
+    <!-- AND（スマホでも横並び維持） -->
     <section id="and" class="panel panel-tri" data-tri="blue-orange">
       <div class="panel-inner wide">
 
@@ -157,6 +166,11 @@
           <div class="count-lab">SECONDS</div>
         </div>
       </div>
+
+      <!-- ① カウントダウンの下にGIF -->
+      <div class="count-gif-wrap">
+        <img class="count-gif" src="images/GIF.gif" alt="gif">
+      </div>
     </section>
 
     <!-- EVENTS -->
@@ -174,7 +188,7 @@
 
     <section class="events">
       <div class="diamond-wrap">
-        <!-- 指示⑤：縦並び（日本語を縦書き） -->
+        <!-- ② スマホで被らない＆受付時間が切れないようにサイズ/行間調整 -->
         <div class="diamond">
           <div class="d-top">
             <div class="jp-vertical">挙式</div>
@@ -213,8 +227,6 @@
             loading="lazy"></iframe>
         </div>
 
-        <!-- 指示⑦：二人からのお願いは削除 -->
-        <!-- 指示⑧：悪天候の場合のフォント統一（notes統一） -->
         <div class="notes">
           <div class="note-title">◆ 悪天候の場合</div>
           <div class="note-text">
@@ -225,7 +237,7 @@
       </div>
     </section>
 
-    <!-- RSVP（フォーム不要のまま） -->
+    <!-- RSVP -->
     <section id="rsvp" class="panel panel-tri" data-tri="pink-yellow">
       <div class="panel-inner center">
         <div class="icon icon-rsvp" aria-hidden="true">
