@@ -4,9 +4,7 @@
   --orange:#f3a56a;
   --pink:#ef4d7a;
   --triYellow:#f7de66;
-
   --greenPanel:#66b98d;
-
   --ink:#111;
   --line: rgba(0,0,0,0.10);
 }
@@ -19,35 +17,71 @@ body{
   background:#fff;
 }
 
-/* HERO：黄色をベタ敷き＆タブの日本語が切れないように overflow visible */
+/* HERO（黄色ベタ、タブが切れない） */
 .hero{
   position: relative;
   height: 62vh;
   min-height: 420px;
   background: var(--yellow);
-  overflow: visible; /* ←重要（タブが下にはみ出しても切れない） */
+  overflow: visible;
 }
 
-/* ヒーロー内の画像だけは切り抜きたいので inner 側で管理 */
 .hero-inner{
   position:absolute; inset:0;
   display:grid;
   place-items:center;
-  padding: 16px 14px 90px;
+  padding: 16px 14px 96px;
   overflow:hidden;
 }
 
+/* ④ hero.png + 横の写真 */
+.hero-media{
+  width: min(980px, 94vw);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: clamp(10px, 2vw, 18px);
+}
+
 .hero-people{
-  width: min(760px, 92vw);
+  width: min(560px, 62vw);
   max-height: 52vh;
   object-fit: contain;
   display:block;
   filter: drop-shadow(0 16px 18px rgba(0,0,0,0.18));
 }
 
+/* 横のスライド */
+.hero-side{
+  width: min(300px, 26vw);
+  height: min(320px, 46vh);
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.14);
+  border: 2px solid rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.15);
+}
+
+.hero-slide{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  opacity:0;
+  transform: scale(1.02);
+  transition: opacity 600ms ease, transform 900ms ease;
+}
+
+.hero-slide.is-active{
+  opacity:1;
+  transform: scale(1.0);
+}
+
 .hero-title{
   position:absolute;
-  bottom: 132px;
+  bottom: 138px;
   left: 50%;
   transform: translateX(-50%);
   margin:0;
@@ -64,7 +98,7 @@ body{
 .hero-doodle{
   position:absolute;
   left:50%;
-  bottom: 160px;
+  bottom: 166px;
   transform: translateX(-50%);
   width: 90px;
   height: 44px;
@@ -93,7 +127,7 @@ body{
 .hero-arrow.left{ left: 14px; }
 .hero-arrow.right{ right: 14px; }
 
-/* top tabs：日本語が切れないように高さ・行高・下余白を確保 */
+/* top tabs（②の切れ対策） */
 .topnav{
   position:absolute;
   bottom: -30px;
@@ -110,8 +144,8 @@ body{
   background:#fff;
   border: 1px solid var(--line);
   border-radius: 0;
-  padding: 12px 8px 14px; /* 下余白を増やす */
-  min-height: 64px;       /* これで日本語が切れない */
+  padding: 12px 8px 14px;
+  min-height: 64px;  /* ←日本語が切れない */
   text-align:center;
   box-shadow: 0 10px 24px rgba(0,0,0,0.10);
   text-decoration: none;
@@ -124,7 +158,6 @@ body{
   color: #1a56b5;
   line-height: 1.2;
 }
-
 .topnav-item .ja{
   margin-top: 6px;
   font-size: 10px;
@@ -133,7 +166,7 @@ body{
 }
 
 .page{
-  padding-top: 56px; /* タブのはみ出し分を吸収 */
+  padding-top: 56px;
   background:#fff;
 }
 
@@ -180,7 +213,7 @@ body{
 .panel-tri[data-tri="none"]::before,
 .panel-tri[data-tri="none"]::after{ display:none; }
 
-/* headings：切れ対策 */
+/* headings */
 .h2{
   font-family:"Amatic SC", cursive;
   font-weight:700;
@@ -242,7 +275,7 @@ body{
 
 .two{
   display:grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* ③ スマホでも基本は横並び維持 */
   gap: 40px;
   padding: 20px 10px 0;
 }
@@ -274,7 +307,7 @@ body{
 .countband{
   position: relative;
   background: var(--yellow);
-  padding: 28px 12px 34px;
+  padding: 28px 12px 22px;
   text-align:center;
   overflow:hidden;
 }
@@ -293,6 +326,7 @@ body{
   color: #ff4a86;
   letter-spacing:.10em;
 }
+
 .count-grid{
   margin: 18px auto 0;
   width: min(980px, 100%);
@@ -312,6 +346,22 @@ body{
   font-size: 12px;
   letter-spacing:.10em;
   color: rgba(255,255,255,0.92);
+}
+
+/* ① GIF */
+.count-gif-wrap{
+  margin: 16px auto 0;
+  width: min(980px, 100%);
+  display:flex;
+  justify-content:center;
+}
+.count-gif{
+  width: min(780px, 92vw);
+  height: auto;
+  display:block;
+  border-radius: 18px;
+  box-shadow: 0 12px 26px rgba(0,0,0,0.14);
+  border: 2px solid rgba(255,255,255,0.45);
 }
 
 /* confetti */
@@ -340,7 +390,7 @@ body{
   align-items:start;
 }
 
-/* ひし形：切れ防止（大きめ＆overflow visible） */
+/* ② 切れ防止：サイズ、行間、最大幅 */
 .diamond{
   width: 280px;
   height: 280px;
@@ -352,11 +402,10 @@ body{
   color:#fff;
   overflow: visible;
 }
-
 .diamond > *{
   transform: rotate(-45deg);
   text-align:center;
-  max-width: 205px;
+  max-width: 210px;
 }
 
 .d-top{
@@ -374,7 +423,6 @@ body{
   letter-spacing:.08em;
 }
 
-/* 指示⑤：縦並び（縦書き） */
 .jp-vertical{
   writing-mode: vertical-rl;
   text-orientation: upright;
@@ -403,12 +451,13 @@ body{
   font-size: 11px;
   opacity:.95;
   line-height: 1.4;
+  white-space: nowrap; /* 受付時間が折返しで崩れない */
 }
 
 /* MAP PANEL */
 .greenbox{
   max-width: 980px;
-  margin: 30px auto 0;
+  margin: 36px auto 0; /* ひし形と被らないように余白増 */
   background: var(--greenPanel);
   padding: 26px 16px 22px;
   color: rgba(0,0,0,0.82);
@@ -460,7 +509,7 @@ body{
   display:block;
 }
 
-/* notes（悪天候のフォント統一） */
+/* 悪天候（フォント統一） */
 .notes{
   max-width: 760px;
   margin: 16px auto 0;
@@ -505,17 +554,62 @@ body{
   to{ transform: translateY(0) scale(1); }
 }
 
+/* --- Responsive --- */
+
+/* ② スマホで「挙式/披露宴が被る」を潰す：早めに1列にする */
+@media (max-width: 900px){
+  .diamond-wrap{
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
 /* Mobile */
 @media (max-width: 760px){
-  .hero-title{ bottom: 144px; }
+  .hero-title{ bottom: 148px; }
   .topnav{ width: calc(100% - 22px); gap: 8px; bottom: -34px; }
   .topnav-item{ min-height: 66px; padding-bottom: 16px; }
 
-  .two{ grid-template-columns: 1fr; gap: 26px; }
+  /* ④ スマホは横スライドは小さめ＆下に回す */
+  .hero-media{
+    flex-direction: column;
+  }
+  .hero-people{
+    width: min(640px, 86vw);
+    max-height: 40vh;
+  }
+  .hero-side{
+    width: min(640px, 86vw);
+    height: 160px;
+  }
+
+  /* ③ スマホでも新郎新婦を横並び維持（小さくする） */
+  .two{
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 14px 4px 0;
+  }
+  .avatar{ width: 78px; height: 78px; }
+  .name{ font-size: 13px; }
+  .name-en{ font-size: 10px; }
+  .lines{
+    font-size: 11px;
+    line-height: 1.75;
+    max-width: 240px;
+  }
+
   .count-grid{ grid-template-columns: 1fr 1fr; }
 
-  .diamond-wrap{ grid-template-columns: 1fr; gap: 22px; }
-  .diamond{ width: 240px; height: 240px; }
-  .diamond > *{ max-width: 175px; }
+  /* ② 受付時間が切れないように、ひし形を少し大きく＆中身幅 */
+  .diamond{ width: 248px; height: 248px; }
+  .diamond > *{ max-width: 190px; }
+  .d-sub{ font-size: 11px; }
   .jp-vertical{ font-size: 15px; }
+
+  .mapframe iframe{ height: 300px; }
+}
+
+/* かなり小さい端末だけ、ANDを折り返し（無理に横を維持すると読めないため） */
+@media (max-width: 360px){
+  .two{ grid-template-columns: 1fr; }
 }
