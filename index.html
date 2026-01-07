@@ -5,7 +5,7 @@
   <title>Wedding Invitation｜橘 風雅 & 平嶋 遥歌</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- スクショの“手書き見出し”に寄せる -->
+  <!-- 見出し系 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Kalam:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
@@ -14,20 +14,20 @@
 </head>
 <body>
 
-  <!-- HERO（黄色背景＋中央人物＋タイトル＋タブ） -->
+  <!-- HERO（黄色をベタ敷き・タブの日本語が切れない） -->
   <header class="hero" id="top">
     <div class="hero-arrow left" aria-hidden="true">‹</div>
     <div class="hero-arrow right" aria-hidden="true">›</div>
 
     <div class="hero-inner">
       <img class="hero-people" src="images/hero.png" alt="hero">
-
       <div class="hero-title-wrap" aria-hidden="true">
         <div class="hero-doodle"></div>
       </div>
       <h1 class="hero-title">WEDDING INVITATION</h1>
     </div>
 
+    <!-- タブ -->
     <nav class="topnav" aria-label="section navigation">
       <a class="topnav-item active" href="#message">
         <div class="en">MESSAGE</div>
@@ -58,6 +58,7 @@
             <path d="M26 21c2 0 3 1 4 3c1-2 2-3 4-3c3 0 5 2 5 5c0 6-9 10-9 10S21 32 21 26c0-3 2-5 5-5z"/>
           </svg>
         </div>
+
         <div class="h2">MESSAGE</div>
 
         <div class="jp small">謹啓</div>
@@ -94,6 +95,7 @@
         <div class="and-title">AND</div>
 
         <div class="two">
+          <!-- 橘 風雅 -->
           <article class="person">
             <div class="avatar">
               <img src="images/groom.jpg" alt="新郎">
@@ -102,14 +104,15 @@
             <div class="name-en">Tachibana Fuga</div>
 
             <div class="lines">
-              <div><b>出身地：</b>—</div>
-              <div><b>趣味：</b>—</div>
-              <div><b>好きなこと：</b>—</div>
+              <div><b>出身地：</b>大阪府</div>
+              <div><b>趣味：</b>労働</div>
+              <div><b>好きなこと：</b>労働</div>
               <div class="spacer"></div>
-              <div><b>メッセージ：</b><br>手作りですが、みなさまに楽しんでいただける式になりますよう、心を込めて準備しています。</div>
+              <div><b>メッセージ：</b><br>遠方大阪までお越しいただきありがとうございます。</div>
             </div>
           </article>
 
+          <!-- 平嶋 遥歌 -->
           <article class="person">
             <div class="avatar">
               <img src="images/bride.jpg" alt="新婦">
@@ -118,18 +121,18 @@
             <div class="name-en">Hirashima Haruka</div>
 
             <div class="lines">
-              <div><b>出身地：</b>—</div>
-              <div><b>趣味：</b>—</div>
-              <div><b>好きなこと：</b>—</div>
+              <div><b>出身：</b>熊本</div>
+              <div><b>趣味：</b>デイトレ</div>
+              <div><b>好きなこと：</b>フラットアーサー</div>
               <div class="spacer"></div>
-              <div><b>メッセージ：</b><br>みなさんに会えるのが本当に楽しみです！当日はたくさん笑って過ごせますように。</div>
+              <div><b>メッセージ：</b><br>それでも宇宙は動いている。</div>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- COUNTDOWN（黄色帯＋紙吹雪） -->
+    <!-- COUNTDOWN -->
     <section class="countband" aria-label="countdown">
       <div class="confetti" aria-hidden="true"></div>
 
@@ -156,7 +159,7 @@
       </div>
     </section>
 
-    <!-- EVENTS（白背景＋中央タイトル＋ひし形2つ＋緑パネル＋地図） -->
+    <!-- EVENTS -->
     <section id="events" class="panel panel-tri" data-tri="none">
       <div class="panel-inner wide center">
         <div class="icon icon-evt" aria-hidden="true">
@@ -171,15 +174,22 @@
 
     <section class="events">
       <div class="diamond-wrap">
+        <!-- 指示⑤：縦並び（日本語を縦書き） -->
         <div class="diamond">
-          <div class="d-top">挙式<br><small>WEDDING CEREMONY</small></div>
+          <div class="d-top">
+            <div class="jp-vertical">挙式</div>
+            <small>WEDDING CEREMONY</small>
+          </div>
           <div class="d-mid">2026.03.27 Fri</div>
           <div class="d-time">13:00</div>
           <div class="d-sub">受付時間 12:00</div>
         </div>
 
         <div class="diamond">
-          <div class="d-top">披露宴<br><small>WEDDING RECEPTION</small></div>
+          <div class="d-top">
+            <div class="jp-vertical">披露宴</div>
+            <small>WEDDING RECEPTION</small>
+          </div>
           <div class="d-mid">2026.03.27 Fri</div>
           <div class="d-time">14:00</div>
           <div class="d-sub">—</div>
@@ -187,7 +197,11 @@
       </div>
 
       <div class="greenbox">
-        <div class="venue">SASA（大阪・服部緑地）</div>
+        <div class="venue">
+          SASA（大阪・服部緑地）
+          <a class="venue-link" href="https://sasa.osaka/" target="_blank" rel="noopener noreferrer">https://sasa.osaka/</a>
+        </div>
+
         <div class="addr">〒561-0873 大阪府豊中市服部緑地1-8</div>
 
         <div class="mapnote">地図をズームするには、Ctrlキーを押しながらスクロールしてください</div>
@@ -199,15 +213,11 @@
             loading="lazy"></iframe>
         </div>
 
+        <!-- 指示⑦：二人からのお願いは削除 -->
+        <!-- 指示⑧：悪天候の場合のフォント統一（notes統一） -->
         <div class="notes">
-          <div class="note-title">◆ ふたりからのお願い</div>
-          <ul>
-            <li>お車でお越しの方は、ガーデン横の駐車場をご利用ください。</li>
-            <li>会場の地面に穴を開けてしまう恐れがありますので、ヒールのご着用はお控えください。</li>
-          </ul>
-
           <div class="note-title">◆ 悪天候の場合</div>
-          <div class="jp">
+          <div class="note-text">
             当日は屋外でのガーデン挙式ですが、前日または当日に雨が降った場合は、<br>
             室内（ファンクションルーム）へ変更となります。
           </div>
@@ -215,7 +225,7 @@
       </div>
     </section>
 
-    <!-- RSVP（不要ならこの section を消してOK） -->
+    <!-- RSVP（フォーム不要のまま） -->
     <section id="rsvp" class="panel panel-tri" data-tri="pink-yellow">
       <div class="panel-inner center">
         <div class="icon icon-rsvp" aria-hidden="true">
