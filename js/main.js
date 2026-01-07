@@ -90,7 +90,7 @@ function prevSlide(){ show(idx - 1); }
 
 function startAuto(){
   stopAuto();
-  timer = setInterval(next, 3000); // 3秒自動切替
+  timer = setInterval(next, 3000);
 }
 function stopAuto(){
   if (timer) clearInterval(timer);
