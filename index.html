@@ -13,21 +13,21 @@
 </head>
 <body>
 
-  <!-- HERO：黄色ベタ + hero.png + 横に写真（自動切替） -->
+  <!-- HERO：黄色ベタ + hero枠でスライド（矢印/スワイプ/自動） -->
   <header class="hero" id="top">
-    <div class="hero-arrow left" aria-hidden="true">‹</div>
-    <div class="hero-arrow right" aria-hidden="true">›</div>
 
     <div class="hero-inner">
-      <div class="hero-media">
-        <img class="hero-people" src="images/hero.png" alt="hero">
+      <div class="hero-stage" id="heroStage" aria-label="hero slideshow">
+        <!-- スライド画像（ここが hero.png の場所） -->
+        <img class="hero-frame is-active" src="images/hero.png" alt="hero 1">
+        <!-- 好きな写真を置く（同じ場所で切替） -->
+        <img class="hero-frame" src="images/hero_slide1.jpg" alt="hero 2">
+        <img class="hero-frame" src="images/hero_slide2.jpg" alt="hero 3">
+        <img class="hero-frame" src="images/hero_slide3.jpg" alt="hero 4">
 
-        <!-- ④ 横のスライド（自動切替） -->
-        <div class="hero-side" aria-label="hero photo slides">
-          <img class="hero-slide is-active" src="images/hero_slide1.jpg" alt="slide 1">
-          <img class="hero-slide" src="images/hero_slide2.jpg" alt="slide 2">
-          <img class="hero-slide" src="images/hero_slide3.jpg" alt="slide 3">
-        </div>
+        <!-- 矢印ボタン（左右） -->
+        <button class="hero-btn left" id="heroPrev" aria-label="previous">‹</button>
+        <button class="hero-btn right" id="heroNext" aria-label="next">›</button>
       </div>
 
       <div class="hero-title-wrap" aria-hidden="true">
@@ -104,14 +104,10 @@
         <div class="and-title">AND</div>
 
         <div class="two">
-          <!-- 橘 風雅 -->
           <article class="person">
-            <div class="avatar">
-              <img src="images/groom.jpg" alt="新郎">
-            </div>
+            <div class="avatar"><img src="images/groom.jpg" alt="新郎"></div>
             <div class="name">橘　風雅</div>
             <div class="name-en">Tachibana Fuga</div>
-
             <div class="lines">
               <div><b>出身地：</b>大阪府</div>
               <div><b>趣味：</b>労働</div>
@@ -121,14 +117,10 @@
             </div>
           </article>
 
-          <!-- 平嶋 遥歌 -->
           <article class="person">
-            <div class="avatar">
-              <img src="images/bride.jpg" alt="新婦">
-            </div>
+            <div class="avatar"><img src="images/bride.jpg" alt="新婦"></div>
             <div class="name">平嶋　遥歌</div>
             <div class="name-en">Hirashima Haruka</div>
-
             <div class="lines">
               <div><b>出身：</b>熊本</div>
               <div><b>趣味：</b>デイトレ</div>
@@ -167,7 +159,6 @@
         </div>
       </div>
 
-      <!-- ① カウントダウンの下にGIF -->
       <div class="count-gif-wrap">
         <img class="count-gif" src="images/GIF.gif" alt="gif">
       </div>
@@ -188,7 +179,6 @@
 
     <section class="events">
       <div class="diamond-wrap">
-        <!-- ② スマホで被らない＆受付時間が切れないようにサイズ/行間調整 -->
         <div class="diamond">
           <div class="d-top">
             <div class="jp-vertical">挙式</div>
