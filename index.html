@@ -15,17 +15,13 @@
 
   <!-- HERO：黄色ベタ + hero枠でスライド（矢印/スワイプ/自動） -->
   <header class="hero" id="top">
-
     <div class="hero-inner">
       <div class="hero-stage" id="heroStage" aria-label="hero slideshow">
-        <!-- スライド画像（ここが hero.png の場所） -->
         <img class="hero-frame is-active" src="images/hero.png" alt="hero 1">
-        <!-- 好きな写真を置く（同じ場所で切替） -->
         <img class="hero-frame" src="images/hero_slide1.jpg" alt="hero 2">
         <img class="hero-frame" src="images/hero_slide2.jpg" alt="hero 3">
         <img class="hero-frame" src="images/hero_slide3.jpg" alt="hero 4">
 
-        <!-- 矢印ボタン（左右） -->
         <button class="hero-btn left" id="heroPrev" aria-label="previous">‹</button>
         <button class="hero-btn right" id="heroNext" aria-label="next">›</button>
       </div>
@@ -36,7 +32,6 @@
       <h1 class="hero-title">WEDDING INVITATION</h1>
     </div>
 
-    <!-- タブ：日本語が切れない -->
     <nav class="topnav" aria-label="section navigation">
       <a class="topnav-item active" href="#message">
         <div class="en">MESSAGE</div>
@@ -94,7 +89,7 @@
       </div>
     </section>
 
-    <!-- AND（スマホでも横並び維持） -->
+    <!-- AND -->
     <section id="and" class="panel panel-tri" data-tri="blue-orange">
       <div class="panel-inner wide">
 
@@ -179,6 +174,7 @@
 
     <section class="events">
       <div class="diamond-wrap">
+        <!-- 挙式 -->
         <div class="diamond">
           <div class="d-top">
             <div class="jp-vertical">挙式</div>
@@ -189,6 +185,7 @@
           <div class="d-sub">受付時間 12:00</div>
         </div>
 
+        <!-- 披露宴（②：- を消す） -->
         <div class="diamond">
           <div class="d-top">
             <div class="jp-vertical">披露宴</div>
@@ -196,7 +193,18 @@
           </div>
           <div class="d-mid">2026.03.27 Fri</div>
           <div class="d-time">14:00</div>
-          <div class="d-sub">—</div>
+          <div class="d-sub"></div>
+        </div>
+
+        <!-- ③：二次会 追加（受付なし） -->
+        <div class="diamond">
+          <div class="d-top">
+            <div class="jp-vertical">二次会</div>
+            <small>AFTER PARTY</small>
+          </div>
+          <div class="d-mid">2026.03.27 Fri</div>
+          <div class="d-time">17:00</div>
+          <div class="d-sub"></div>
         </div>
       </div>
 
@@ -215,6 +223,22 @@
             title="SASA 地図"
             src="https://www.google.com/maps?q=大阪府豊中市服部緑地1-8&output=embed"
             loading="lazy"></iframe>
+        </div>
+
+        <!-- ③：送迎バス案内を地図の下に追加 -->
+        <div class="busbox">
+          <div class="bus-title">◆ バス乗り場のご案内</div>
+
+          <div class="bus-img">
+            <img src="images/bus_map.jpg" alt="バス乗り場地図">
+          </div>
+
+          <div class="bus-text">
+            緑地公園駅南口(西側)出てすぐ<br>
+            新御堂筋に停車いたします。<br><br>
+            出発時刻　11:50 / 12:00 / 12:10 / 12:20 / 12:30 / 12:40<br>
+            ※交通事情により発着時刻が遅れる可能性があります。結婚式当日の運行のみとなります。
+          </div>
         </div>
 
         <div class="notes">
